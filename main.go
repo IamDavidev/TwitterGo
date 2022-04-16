@@ -1,12 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"
+
+	"github.com/itsDavidev/TwitterGo/db"
+	"github.com/itsDavidev/TwitterGo/handlers"
 )
 
 func main() {
-	var envMongo = os.Getenv("MONGO_DB_URI")
-	fmt.Println("Go Twitter Clone ", envMongo)
+	if db.IsConnection() == false {
+		log.Fatal("Connection to mongoDB failed")
+		return
+	}
+	handlers.HandlersRoutes()
 
 }

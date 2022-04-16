@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var MongoClient = ConnectionToMongoDb()
+var MongoConnection = ConnectionToMongoDb()
 
 var clientOptions = options.Client().ApplyURI("mongodb+srv://root:rootPass@cluster0.oklsp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
@@ -33,7 +33,7 @@ func ConnectionToMongoDb() *mongo.Client {
 
 func IsConnection() bool {
 
-	err := MongoClient.Ping(context.TODO(), nil)
+	err := MongoConnection.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Fatal(err.Error())
 		return false
